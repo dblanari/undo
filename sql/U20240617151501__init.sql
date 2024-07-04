@@ -1,0 +1,1 @@
+ALTER TABLE tutorials_tbl ROP COLUMN NEW_COL

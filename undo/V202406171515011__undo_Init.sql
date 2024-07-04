@@ -1,0 +1,1 @@
+ALTER TABLE tutorials_tbl DROP COLUMN NEW_COL

@@ -1,0 +1,1 @@
+ALTER TABLE tutorials_tbl ADD NEW_COL VARCHAR(25)

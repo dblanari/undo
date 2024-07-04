@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.10'
+    id 'io.spring.dependency-management' version '1.1.5'
+    id 'org.flywaydb.flyway' version '8.2.2'
+}
+
+group = 'com.denis.undo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '1.8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+flyway {
+    url = "jdbc:h2:~/test"
+    user = "sa"
+    password = ""
+    driver = "org.h2.Driver"
+    sqlMigrationPrefix = "V"
+    sqlMigrationSeparator = "__"
+    placeholderPrefix = "#["
+    placeholderSuffix = "]"
+    placeholderReplacement = true
+    schemas = ["owner"]
+	locations = ["filesystem:${project.file("sql")}", "filesystem:${project.file("undo")}"]
+}
+
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
